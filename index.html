@@ -559,6 +559,27 @@
 
           </div>
         `;
+      } else if (type === "D") {
+        invitationContent.innerHTML = `
+          <div class="s-card">
+            <div class="badge ${data.badgeClass}">${data.badge}</div>
+
+            <br>
+              1등이 될 것 같은 팀에 응원하세요.<br>
+              그들과 함께 하게 될 것입니다.
+            </div>
+
+            <div class="mission-box">
+              <h3>1조 : 류영재, 이인경, 최민규</h3>
+              <h3>2조 : 류영식, 김지민, 박지예</h3>
+              <h3>3조 : 안동현, 정혜민, 황순현</h3>
+              <p>
+                하나의 팀을 선정하여, '김지민 사원'에게 알려주세요.<br>
+              </p>
+            </div>
+
+          </div>
+        `;
       }
 
       document.getElementById("errorMessage").style.display = "none";
