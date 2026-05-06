@@ -2,605 +2,371 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>디혁팀 방탈출 초대장</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>26년 상반기 디지털혁신 팀 빌딩 초대장</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
   <style>
+    /* 기본 배경 및 모바일 스크롤 방지 */
     body {
-      margin: 0;
-      font-family: "맑은 고딕", Arial, sans-serif;
-      background:
-        radial-gradient(circle at center, rgba(90, 0, 0, 0.35), transparent 35%),
-        linear-gradient(135deg, #050507, #111827, #1f0f0f);
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: #050507;
+      background-image: 
+        radial-gradient(circle at 50% 50%, #2a0505 0%, transparent 70%),
+        repeating-linear-gradient(45deg, rgba(0,0,0,0.1) 0px, rgba(0,0,0,0.1) 2px, transparent 2px, transparent 4px);
       min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       color: #f3e6d0;
+      -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
+    
+    /* 모바일에서 봉투 크기 자동 조절 */
+    .envelope-card {
+      background: #2a1212;
+      border: 1px solid rgba(247, 213, 139, 0.1);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9);
+      position: relative;
+      width: 90vw;
+      max-width: 420px;
+      aspect-ratio: 3/2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 4px;
+      margin-bottom: 2rem;
+    }
 
-    body::before {
-      content: "";
-      position: fixed;
+    /* 입체적인 왁스 인장 CSS */
+    .wax-seal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -20%);
+      width: 80px;
+      height: 80px;
+      z-index: 10;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.7));
+    }
+
+    .wax-seal::before {
+      content: '';
+      position: absolute;
       inset: 0;
-      background:
-        repeating-linear-gradient(
-          0deg,
-          rgba(255, 255, 255, 0.03) 0px,
-          rgba(255, 255, 255, 0.03) 1px,
-          transparent 1px,
-          transparent 4px
-        );
-      pointer-events: none;
-      opacity: 0.25;
+      background: radial-gradient(circle at 30% 30%, #b22222, #700000 80%);
+      border-radius: 48% 52% 45% 55% / 55% 48% 52% 45%; 
+      box-shadow: 
+        inset 2px 2px 5px rgba(255,255,255,0.2),
+        inset -2px -2px 5px rgba(0,0,0,0.5),
+        2px 5px 10px rgba(0,0,0,0.4);
     }
 
-    .card {
-      width: 420px;
-      max-width: calc(100% - 36px);
-      background: rgba(18, 18, 18, 0.94);
-      padding: 34px 28px;
-      border-radius: 18px;
-      text-align: center;
-      box-shadow:
-        0 0 30px rgba(180, 0, 0, 0.35),
-        0 18px 45px rgba(0, 0, 0, 0.75);
-      border: 1px solid rgba(180, 40, 40, 0.55);
-      position: relative;
-      margin: 24px 0;
-    }
-
-    .card::before {
-      content: "CONFIDENTIAL";
-      position: absolute;
-      top: 14px;
-      right: 18px;
-      font-size: 11px;
-      letter-spacing: 2px;
-      color: rgba(255, 80, 80, 0.65);
-    }
-
-    .envelope {
-      width: 150px;
-      height: 105px;
-      margin: 0 auto 24px;
-      position: relative;
-      background: #3a1f1f;
-      border: 2px solid #9b2c2c;
-      border-radius: 6px;
-      box-shadow:
-        inset 0 0 20px rgba(0, 0, 0, 0.65),
-        0 0 22px rgba(180, 0, 0, 0.45);
-    }
-
-    .envelope::before {
+    .wax-seal::after {
       content: "";
       position: absolute;
-      left: 0;
-      top: 0;
-      border-left: 73px solid transparent;
-      border-right: 73px solid transparent;
-      border-top: 54px solid #5b2b2b;
+      inset: 12px;
+      background: #7a0000;
+      border-radius: 50%;
+      border: 2px solid rgba(0,0,0,0.15);
+      box-shadow: 
+        inset 3px 3px 6px rgba(0,0,0,0.6),
+        inset -2px -2px 4px rgba(255,255,255,0.05);
     }
 
-    .envelope::after {
-      content: "☠";
+    /* 봉투 덮개 디자인 - 모바일 대응 */
+    .envelope-card::before {
+      content: "";
       position: absolute;
+      top: 0;
       left: 0;
-      right: 0;
-      top: 36px;
-      font-size: 34px;
-      color: #f1d08a;
-      text-shadow: 0 0 12px rgba(255, 170, 60, 0.8);
+      width: 0;
+      height: 0;
+      border-left: 45vw solid transparent;
+      border-right: 45vw solid transparent;
+      border-top: 30vw solid #3a1a1a;
+      z-index: 1;
     }
 
-    h1 {
-      margin: 0 0 14px;
-      font-size: 27px;
-      color: #f7d58b;
-      letter-spacing: -0.5px;
-      text-shadow: 0 0 10px rgba(255, 170, 60, 0.35);
-    }
-
-    p {
-      line-height: 1.7;
-      color: #cdbfae;
-      margin: 0;
-    }
-
-    .warning-text {
-      margin: 18px 0;
-      padding: 14px;
-      border: 1px dashed rgba(255, 90, 90, 0.55);
-      border-radius: 12px;
-      background: rgba(80, 0, 0, 0.25);
-      color: #ffb3a7;
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    input {
-      width: 100%;
-      padding: 14px;
-      margin: 18px 0 12px;
-      font-size: 16px;
-      text-align: center;
-      border: 1px solid #6b2c2c;
-      border-radius: 10px;
-      box-sizing: border-box;
-      background: #111;
-      color: #f7d58b;
-      outline: none;
-    }
-
-    input::placeholder {
-      color: #7d6f63;
-    }
-
-    input:focus {
-      border-color: #d64b4b;
-      box-shadow: 0 0 12px rgba(214, 75, 75, 0.45);
-    }
-
-    button {
-      width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: 10px;
-      background: linear-gradient(135deg, #8b0000, #3a0000);
-      color: #fff3dd;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      letter-spacing: 0.5px;
-      box-shadow: 0 0 16px rgba(180, 0, 0, 0.45);
-    }
-
-    button:hover {
-      background: linear-gradient(135deg, #b30000, #530000);
-      transform: translateY(-1px);
-    }
-
-    .error {
-      display: none;
-      color: #ff6b6b;
-      margin-top: 12px;
-      font-size: 14px;
-    }
-
-    #invitationPage {
-      display: none;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 7px 14px;
-      border-radius: 20px;
-      font-size: 14px;
-      font-weight: bold;
-      margin-bottom: 16px;
-    }
-
-    .typeA {
-      background: #0b1020;
-      color: #8ee6ff;
-      border: 1px solid rgba(142, 230, 255, 0.6);
-      box-shadow: 0 0 14px rgba(80, 210, 255, 0.35);
-    }
-
-    .typeB {
-      background: #dff7e8;
-      color: #176b36;
-    }
-
-    .typeC {
-      background: #e8f0fe;
-      color: #174ea6;
-    }
-
-    .typeD {
-      background: #fce8e6;
-      color: #a50e0e;
-    }
-
-    .message {
-      margin: 18px 0;
-      white-space: pre-line;
-      line-height: 1.8;
-      font-size: 16px;
-      color: #e8d8c0;
-    }
-
-    .info {
-      background: rgba(255, 255, 255, 0.08);
-      padding: 16px;
-      border-radius: 14px;
-      text-align: left;
-      margin: 20px 0;
-      line-height: 1.8;
-      font-size: 15px;
-      color: #e9dcc9;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    .info strong {
-      color: #f7d58b;
-    }
-
-    .back {
-      background: #555;
-      box-shadow: none;
-    }
-
-.place-link {
-  display: block;
-  width: 100%;
-  padding: 14px;
-  border-radius: 10px;
-  box-sizing: border-box;
-  text-decoration: none;
-  text-align: center;
-  color: #fff3dd;
-  font-size: 16px;
-  font-weight: bold;
-  letter-spacing: 0.5px;
-}
-
-    .back:hover {
-      background: #444;
-    }
-
-    .gasa-card {
-      text-align: left;
-    }
-
-    .gasa-image {
-      width: 100%;
-      border-radius: 14px;
-      margin: 8px 0 20px;
-      border: 1px solid rgba(142, 230, 255, 0.35);
-      box-shadow: 0 0 24px rgba(60, 180, 255, 0.25);
-      display: block;
-    }
-
-    .gasa-title {
-      text-align: center;
-      color: #8ee6ff;
-      font-size: 28px;
-      margin-bottom: 6px;
-      letter-spacing: 1px;
-      text-shadow: 0 0 14px rgba(80, 210, 255, 0.55);
-    }
-
-    .gasa-subtitle {
-      text-align: center;
-      color: #d8f7ff;
-      font-size: 15px;
-      margin-bottom: 18px;
-      line-height: 1.7;
-    }
-
-    .mission-box {
-      background: rgba(5, 18, 35, 0.85);
-      border: 1px solid rgba(142, 230, 255, 0.28);
-      border-radius: 14px;
-      padding: 15px;
-      margin: 14px 0;
-      box-shadow: inset 0 0 16px rgba(0, 0, 0, 0.35);
-    }
-
-    .mission-box h3 {
-      margin: 0 0 8px;
-      color: #8ee6ff;
-      font-size: 17px;
-    }
-
-    .mission-box p {
-      color: #d6e8ee;
-      font-size: 14.5px;
-      line-height: 1.7;
-    }
-
-    .condition-list {
-      margin: 10px 0 0;
-      padding-left: 20px;
-      color: #e9dcc9;
-      line-height: 1.8;
-      font-size: 14.5px;
-    }
-
-    .final-call {
-      margin-top: 18px;
-      padding: 15px;
-      text-align: center;
-      border-radius: 14px;
-      background: linear-gradient(135deg, rgba(0, 110, 150, 0.35), rgba(120, 0, 0, 0.3));
-      border: 1px solid rgba(142, 230, 255, 0.4);
-      color: #ffffff;
-      font-weight: bold;
-      line-height: 1.7;
-      box-shadow: 0 0 18px rgba(80, 210, 255, 0.25);
-    }
-
-    @media (max-width: 480px) {
-      .card {
-        width: calc(100% - 36px);
-        padding: 30px 20px;
+    @media (min-width: 420px) {
+      .envelope-card::before {
+        border-left-width: 210px;
+        border-right-width: 210px;
+        border-top-width: 140px;
       }
+    }
 
-      h1 {
-        font-size: 24px;
-      }
+    /* 스캔라인 효과 */
+    .scanline {
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(to bottom, transparent, rgba(255, 0, 0, 0.1), transparent);
+      position: fixed;
+      top: 0;
+      left: 0;
+      animation: scan 4s linear infinite;
+      pointer-events: none;
+      z-index: 100;
+    }
 
-      .gasa-title {
-        font-size: 24px;
-      }
+    @keyframes scan {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(100vh); }
+    }
+
+    /* 화면 전환 애니메이션 */
+    .fade-in { animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 터치 버튼 피드백 */
+    .btn-active:active {
+      transform: scale(0.97);
+      filter: brightness(0.85);
+    }
+
+    input[type="text"] {
+      font-family: 'JetBrains Mono', monospace;
+      -webkit-appearance: none;
+      border-radius: 0;
+    }
+
+    /* 아이폰 노치 대응 */
+    .safe-padding {
+      padding-bottom: env(safe-area-inset-bottom);
     }
   </style>
 </head>
+<body class="flex flex-col items-center p-6 pt-12 pb-12 safe-padding">
+  <div class="scanline"></div>
 
-<body>
+  <!-- 시작 페이지 (보안 모드) -->
+  <div id="startPage" class="w-full max-w-md flex flex-col items-center fade-in">
+    <!-- 대형 편지 봉투 -->
+    <div class="envelope-card overflow-hidden">
+      <div class="wax-seal"></div>
+    </div>
+    
+    <!-- 입력 및 하단 문구 (봉투 하단 배치) -->
+    <div class="w-full flex flex-col items-center space-y-8 mt-4">
+      <div class="w-full max-w-[280px] relative">
+        <input type="text" id="employeeId" 
+               inputmode="numeric"
+               placeholder="password" 
+               class="w-full bg-transparent border-b-2 border-[#f7d58b]/20 py-4 text-center text-[#f7d58b] placeholder-[#f7d58b]/30 focus:outline-none focus:border-[#f7d58b] transition-all text-2xl font-light tracking-[0.4em] z-20">
+      </div>
+      
+      <div class="text-[12px] text-[#f7d58b]/40 tracking-[0.2em] font-bold z-20 uppercase text-center">
+        26년 상반기 디지털혁신 팀 빌딩
+      </div>
 
-<!-- 첫 화면 -->
-<div class="card" id="startPage">
-  <div class="envelope"></div>
-
-  <h1>26년 상반기 디지털혁신 팀 빌딩</h1>
-
-  <input type="text" id="employeeId" placeholder="사번을 입력하시오">
-
-  <div class="error" id="errorMessage">
-    접근 실패. 등록되지 않은 사번입니다.
-  </div>
-</div>
-
-  <!-- 초대장 화면 -->
-  <div class="card" id="invitationPage">
-    <div id="invitationContent"></div>
-<br>
-<a
-  class="back place-link"
-  href="https://map.naver.com/p/directions/3zmTbO,2AJMH3,%EB%A1%AF%EB%8D%B0%EC%9B%94%EB%93%9C%ED%83%80%EC%9B%8C,35306752,PLACE_POI/3zn8jb,2AJP6O,%EB%A8%B8%EB%8D%94%ED%8C%8C%EC%BB%A4%20WOW%EC%9E%A0%EC%8B%A4%EC%A0%90,1086207417,PLACE_POI/-/walk?c=17.00,0,0,0,dh"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  장소 1 : 마더파커wow 잠실점 (링크 확인)
-</a>
-<br>
-
-<a
-  class="back place-link"
-  href="https://map.naver.com/p/directions/3zn8jb,2AJP6O,%EB%A8%B8%EB%8D%94%ED%8C%8C%EC%BB%A4%20WOW%EC%9E%A0%EC%8B%A4%EC%A0%90,1086207417,PLACE_POI/3zn9z2,2AJQ3l,%EB%B0%A9%EC%9D%B4%20%EA%B4%91%EC%95%88%EB%A6%AC,1896562967,PLACE_POI/-/walk?c=19.00,0,0,0,dh"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  장소 2 : 방이 광안리 (링크 확인)
-</a>
-
+      <div id="errorMessage" class="hidden text-red-600 text-[11px] font-black uppercase tracking-widest animate-pulse z-20">
+        Access Denied
+      </div>
+    </div>
   </div>
 
+  <!-- 초대장 상세 페이지 -->
+  <div id="invitationPage" class="hidden w-full max-w-sm space-y-6 fade-in">
+    <div class="bg-black/80 backdrop-blur-xl border border-red-900/30 rounded-[2.5rem] p-7 relative overflow-hidden shadow-2xl">
+      <div id="invitationContent"></div>
+      
+      <!-- 지도 및 집결지 링크 -->
+      <div class="mt-10 pt-8 border-t border-red-900/20 space-y-4">
+        <h4 class="text-[#f7d58b] text-[10px] font-black flex items-center gap-2 tracking-widest uppercase opacity-60">
+          <span class="text-sm">📍</span> Rendezvous Point
+        </h4>
+        <a href="https://map.naver.com/p/directions/3zmTbO,2AJMH3,%EB%A1%AF%EB%8D%B0%EC%9B%94%EB%93%9C%ED%83%80%EC%9B%8C,35306752,PLACE_POI/3zn8jb,2AJP6O,%EB%A8%B8%EB%8D%94%ED%8C%8C%EC%BB%A4%20WOW%EC%9E%A0%EC%8B%A4%EC%A0%90,1086207417,PLACE_POI/-/walk?c=17.00,0,0,0,dh" 
+           target="_blank" 
+           class="flex items-center justify-between w-full p-5 bg-white/5 border border-white/10 rounded-2xl text-gray-200 text-sm font-bold btn-active transition-all active:bg-white/10">
+          <span>장소 1: 마더파커 WOW 잠실점</span>
+          <span class="text-[10px] text-red-500 font-black">MAP ➔</span>
+        </a>
+        <a href="https://map.naver.com/p/directions/3zn8jb,2AJP6O,%EB%A8%B8%EB%8D%94%ED%8C%8C%EC%BB%A4%20WOW%EC%9E%A0%EC%8B%A4%01%EC%A0%90,1086207417,PLACE_POI/3zn9z2,2AJQ3l,%EB%B0%A9%EC%9D%B4%20%EA%B4%91%EC%95%88%EB%A6%AC,1896562967,PLACE_POI/-/walk?c=19.00,0,0,0,dh" 
+           target="_blank" 
+           class="flex items-center justify-between w-full p-5 bg-white/5 border border-white/10 rounded-2xl text-gray-200 text-sm font-bold btn-active transition-all active:bg-white/10">
+          <span>장소 2: 방이 광안리</span>
+          <span class="text-[10px] text-red-500 font-black">MAP ➔</span>
+        </a>
+      </div>
+    </div>
+  </div>
 
   <script>
-    /*
-      초대장 배정:
-      A: 3명 - G.A.S.A. HELPER 요원 모집
-      B: 3명 - 
-      C: 3명
-      D: 1명
-    */
-
+    // 사번 데이터 매핑 (기존 유지)
     const employeeMap = {
-      "1111": "A",
-      "2222": "B",
-      "3333": "C",
-      "4444": "D",
-      "2180": "A",
-      "0066": "A",
-      "0141": "A",
-      "1024": "B",
-      "0127": "B",
-      "0004": "B",
-
-      "0478": "C",
-      "0146": "C",
-      "0214": "C",
-
+      "1111": "A", "2222": "B", "3333": "C", "4444": "D",
+      "2180": "A", "0066": "A", "0141": "A",
+      "1024": "B", "0127": "B", "0004": "B",
+      "0478": "C", "0146": "C", "0214": "C",
       "0095": "D"
     };
 
     const invitationData = {
       A: {
         badge: "G.A.S.A. CLASSIFIED",
-        badgeClass: "typeA",
-        title: "G.A.S.A. HELPER 요원 모집",
-        imageUrl: "dx1.jpg"
+        color: "blue",
+        imageUrl: "dx1.jpg",
+        members: "류*재, 이*경, 최*규",
+        time: "17:00 사무실 출발 → 17:10 도착"
       },
-
       B: {
         badge: "파커랜드 초대장",
-        badgeClass: "typeB",
-        title: "파커랜드 초대장",
-        imageUrl: "dx2.jpg"
+        color: "green",
+        imageUrl: "dx2.jpg",
+        members: "류*식, 김*민, 박*예",
+        time: "17:10 사무실 출발 → 17:20 도착"
       },
-
       C: {
         badge: "아틀라스",
-        badgeClass: "typeC",
-        title: "아틀라스",
-        imageUrl: "dx3.jpg"
+        color: "indigo",
+        imageUrl: "dx3.jpg",
+        members: "안*현, 정혜민, 황*현",
+        time: "17:15 사무실 출발 → 17:25 도착"
       },
-
       D: {
         badge: "특별 초대장",
-        badgeClass: "typeD",
-        title: "시크릿 키퍼",
+        color: "red",
+        members: "디지털혁신팀원",
+        time: "자율 합류 (19:00)"
       }
     };
 
     function openInvitation() {
-      const employeeId = document.getElementById("employeeId").value.trim();
-      const type = employeeMap[employeeId];
+      const input = document.getElementById("employeeId");
+      const id = input.value.trim();
+      const type = employeeMap[id];
+      const err = document.getElementById("errorMessage");
 
       if (!type) {
-        document.getElementById("errorMessage").style.display = "block";
+        err.classList.remove("hidden");
+        input.classList.add("border-red-600");
         return;
       }
 
+      renderContent(type);
+      document.getElementById("startPage").classList.add("hidden");
+      document.getElementById("invitationPage").classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderContent(type) {
       const data = invitationData[type];
-      const invitationContent = document.getElementById("invitationContent");
+      const container = document.getElementById("invitationContent");
+      
+      const badgeStyles = {
+        blue: "bg-blue-500/20 text-blue-400 border-blue-500/40",
+        green: "bg-green-500/20 text-green-400 border-green-500/40",
+        indigo: "bg-indigo-500/20 text-indigo-400 border-indigo-500/40",
+        red: "bg-red-500/20 text-red-400 border-red-500/40"
+      };
 
-      if (type === "A") {
-        invitationContent.innerHTML = `
-          <div class="gasa-card">
-            <div class="badge ${data.badgeClass}">${data.badge}</div>
+      let html = `
+        <div class="inline-block px-3 py-1.5 rounded-lg text-[10px] font-black border ${badgeStyles[data.color]} mb-8 uppercase tracking-[0.2em]">
+          ${data.badge}
+        </div>
+      `;
 
-            <img
-              class="gasa-image"
-              src="${data.imageUrl}"
-              alt="G.A.S.A. HELPER 요원 모집 이미지"
-            />
-            <br>
-              이제, 우주의 미래는 G.A.S.A.가 책임집니다.<br>
-              그리고, 당신이 그 미래를 바꿀 헬퍼 요원이 될 차례입니다.
-            </div>
-
-            <div class="mission-box">
-              <h3>임무 1. 실종된 G.A.S.A. 요원 구출 작전</h3>
-              <p>
-                우주 어딘가에서 구조를 기다리고 있는 요원이 있습니다.<br>
-                당신의 첫 임무는 그를 무사히 지구로 귀환시키는 것입니다.
-              </p>
-            </div>
-
-            <div class="mission-box">
-              <h3>임무 2. 극한의 행성에서 진행되던 신광석 채집</h3>
-              <p>
-                실종된 그가 맡았던 임무는 중단될 수 없습니다.<br>
-                지금부터는 당신이 이어받아야 합니다.
-              </p>
-            </div>
-
-            <div class="info">
-              <div><strong>대상:</strong> 류영재, 이인경, 최민규</div>
-              <div><strong>시간:</strong> 사무실 출발 17:00, 도착 17:10</div>
-            </div>
-
-            <div class="final-call">
-              우주는 더 이상 영화 속 이야기가 아닙니다.<br>
-              이제 당신이 그 주인공입니다.<br><br>
-              !!! G.A.S.A. 헬퍼 요원, 지금 모집 중 !!!
-            </div>
-          </div>
-        `;
-      } else if (type === "B") {
-        invitationContent.innerHTML = `
-          <div class="land-card">
-            <div class="badge ${data.badgeClass}">${data.badge}</div>
-
-            <img
-              class="land-image"
-              src="${data.imageUrl}"
-              alt="파커랜드 이미지"
-            />
-            <br>
-              <br>"김파커가 돌아왔다!"</div>
-
-            <div class="mission-box">
-              <p>
-                환상의 나라, 파커랜드에 여러분을 초대합니다.<br>
-                어느 날, 파커에게 도착한 한 통의 초대장과 신비로운 토큰.<br>
-                이건 우연일까, 운명일까?<br>
-                “혹시... 내가 알던 그 김파커?”<br>
-                맞습니다. 바로 그 김파커.<br>
-                지금, 당신도 그 초대장을 받게 될지도 모릅니다.<br>
-                상상 그 이상, 현실 너머의 세계.<br>
-                파커랜드, 입장하시겠습니까?<br>
-              </p>
-            </div>
-
-            <div class="info">
-              <div><strong>대상:</strong> 류영식, 김지민, 박지예</div>
-              <div><strong>시간:</strong> 사무실 출발 17:10, 도착 17:20</div>
-            </div>
-
-          </div>
-        `;
-      } else if (type === "C") {
-        invitationContent.innerHTML = `
-          <div class="atlas-card">
-            <div class="badge ${data.badgeClass}">${data.badge}</div>
-
-            <img
-              class="atlas-image"
-              src="${data.imageUrl}"
-              alt="아를라스 이미지"
-            />
-            <br></div>
-
-            <div class="mission-box">
-              <h3>아틀라스를 찾아서: 전설이 현실이 되는 순간</h3>
-              <p>
-              당신은 해양연구소의 소장.<br> 평생을 바다와 살아온 바다의 사람.<br>
-              어느 날, 의문의 글 하나가 당신의 시선을 사로잡는다.<br>
-              '아틀라스는… 실존한다?'"<br>
-              "작성자에게 연락한 당신에게 돌아온 건 단 두 가지.<br>
-              낡은 지도 한 장, 그리고 믿기 어려운 사진 한 장."<br>
-              "전설은 끝나지 않았다.<br>
-              이제, 직접 나설 차례다.<br>
-              심해의 비밀, 아틀라스의 보물은 정말 존재할까?"<br>
-              당신의 심장을 뛰게 할 바다 속 모험이 시작된다.<br>
-              </p>
-            </div>
-
-            <div class="info">
-              <div><strong>대상:</strong> 안동현, 정혜민, 황순현</div>
-              <div><strong>시간:</strong> 사무실 출발 17:15, 도착 17:25</div>
-            </div>
-
-          </div>
-        `;
-      } else if (type === "D") {
-        invitationContent.innerHTML = `
-          <div class="s-card">
-            <div class="badge ${data.badgeClass}">${data.badge}</div>
-
-            <br>
-              1등이 될 것 같은 팀에 응원하세요.<br>
-              그들과 함께 하게 될 것입니다.
-            </div>
-
-            <div class="mission-box">
-              <h3>1조 : 류영재, 이인경, 최민규</h3>
-              <h3>2조 : 류영식, 김지민, 박지예</h3>
-              <h3>3조 : 안동현, 정혜민, 황순현</h3>
-              <p>
-                하나의 팀을 선정하여, '김지민 사원'에게 알려주세요.<br>
-              </p>
-            </div>
-
+      if (type !== 'D') {
+        html += `
+          <div class="relative mb-8">
+            <img src="${data.imageUrl}" class="w-full h-48 object-cover rounded-3xl border border-white/10 shadow-2xl">
+            <div class="absolute inset-0 rounded-3xl shadow-inner bg-gradient-to-t from-black/60 to-transparent"></div>
           </div>
         `;
       }
 
-      document.getElementById("errorMessage").style.display = "none";
-      document.getElementById("startPage").style.display = "none";
-      document.getElementById("invitationPage").style.display = "block";
+      if (type === 'A') {
+        html += `
+          <div class="space-y-6">
+            <p class="text-xl font-bold text-blue-50 leading-snug">
+              우주의 미래는 G.A.S.A.가 책임집니다.<br>당신은 그 미래를 바꿀 <span class="text-blue-400 underline decoration-blue-500/50 underline-offset-4">헬퍼 요원</span>입니다.
+            </p>
+            <div class="space-y-3">
+              <div class="bg-blue-950/30 p-5 rounded-2xl border border-blue-900/30">
+                <h3 class="text-blue-400 font-black text-sm mb-2 uppercase tracking-tighter">TASK 01 실종 요원 구출</h3>
+                <p class="text-[13px] text-blue-100/70 leading-relaxed">구조를 기다리는 요원을 무사히 지구로 귀환시키는 것이 당신의 첫 임무입니다.</p>
+              </div>
+              <div class="bg-blue-950/30 p-5 rounded-2xl border border-blue-900/30">
+                <h3 class="text-blue-400 font-black text-sm mb-2 uppercase tracking-tighter">TASK 02 신광석 채집</h3>
+                <p class="text-[13px] text-blue-100/70 leading-relaxed">실종된 요원이 수행하던 극한 행성의 광석 채집 임무를 완수하십시오.</p>
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (type === 'B') {
+        html += `
+          <div class="space-y-6">
+            <div class="bg-green-950/30 p-6 rounded-3xl border border-green-900/30">
+              <p class="text-2xl font-black text-green-400 mb-4 italic leading-tight">"김파커가 돌아왔다!"</p>
+              <p class="text-[14px] text-green-100/80 leading-relaxed font-medium">
+                환상의 나라 파커랜드에 오신 것을 환영합니다. 어느 날 도착한 한 통의 초대장과 신비로운 토큰... <br><br>
+                이건 운명일까요? 상상 그 이상의 세계가 지금 열립니다.
+              </p>
+            </div>
+            <p class="text-center font-bold text-green-500 animate-bounce text-sm">파커랜드, 입장하시겠습니까?</p>
+          </div>
+        `;
+      } else if (type === 'C') {
+        html += `
+          <div class="space-y-6">
+            <h2 class="text-2xl font-black text-indigo-400 tracking-tight">아틀라스를 찾아서</h2>
+            <div class="bg-indigo-950/30 p-6 rounded-3xl border border-indigo-900/30 text-[14px] leading-relaxed text-indigo-100/80 italic font-medium">
+              "아틀라스는 실존한다..."<br><br>
+              해양연구소장인 당신에게 전달된 낡은 지도와 사진. 전설은 끝나지 않았습니다. 심해 속 아틀라스의 보물을 찾는 모험이 지금 시작됩니다.
+            </div>
+          </div>
+        `;
+      } else if (type === 'D') {
+        html += `
+          <div class="space-y-6">
+            <p class="text-xl font-black text-red-100 leading-snug">
+              당신은 <span class="text-red-500 underline underline-offset-4 decoration-red-500/50 italic">시크릿 키퍼</span>입니다.
+            </p>
+            <p class="text-sm text-gray-400 font-medium">우승이 예상되는 팀을 응원하십시오. 당신은 그들과 한 팀이 됩니다.</p>
+            <div class="bg-red-950/30 p-6 rounded-3xl border border-red-900/30 space-y-5">
+              <div class="flex flex-col gap-1">
+                <span class="text-[10px] text-red-500 font-black tracking-widest uppercase opacity-60">Team 01</span>
+                <span class="text-sm font-bold text-red-100">류*재, 이*경, 최*규</span>
+              </div>
+              <div class="flex flex-col gap-1">
+                <span class="text-[10px] text-red-500 font-black tracking-widest uppercase opacity-60">Team 02</span>
+                <span class="text-sm font-bold text-red-100">류*식, 김*민, 박*예</span>
+              </div>
+              <div class="flex flex-col gap-1">
+                <span class="text-[10px] text-red-500 font-black tracking-widest uppercase opacity-60">Team 03</span>
+                <span class="text-sm font-bold text-red-100">안*현, 정*민, 황*현</span>
+              </div>
+            </div>
+            <p class="text-[11px] text-gray-500 font-bold text-center">선택한 조를 '김*민'에게 조용히 전달하십시오.</p>
+          </div>
+        `;
+      }
+
+      html += `
+        <div class="mt-10 pt-6 border-t border-white/5 space-y-3">
+          <div class="flex items-center justify-between text-[11px] font-black uppercase tracking-[0.15em] text-gray-500">
+            <span>Personnel</span>
+            <span class="text-[#f7d58b]">${data.members}</span>
+          </div>
+          <div class="flex items-center justify-between text-[11px] font-black uppercase tracking-[0.15em] text-gray-500">
+            <span>Time</span>
+            <span class="text-[#f7d58b]">${data.time}</span>
+          </div>
+        </div>
+      `;
+
+      container.innerHTML = html;
     }
 
-    function goBack() {
-      document.getElementById("employeeId").value = "";
-      document.getElementById("errorMessage").style.display = "none";
-
-      document.getElementById("startPage").style.display = "block";
-      document.getElementById("invitationPage").style.display = "none";
-    }
-
-    document.getElementById("employeeId").addEventListener("keyup", function(event) {
-      if (event.key === "Enter") {
+    // 엔터 키 입력 시 인증 실행 및 모바일 키보드 닫기
+    document.getElementById("employeeId").addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
         openInvitation();
+        e.target.blur();
       }
     });
   </script>
-
 </body>
 </html>
