@@ -478,7 +478,7 @@
 
             <div class="info">
               <div><strong>대상:</strong> 류영재, 이인경, 최민규</div>
-              <div><strong>시간:</strong> 출발 17:10, 시작 17:25</div>
+              <div><strong>시간:</strong> 사무실 출발 17:00, 도착 17:10</div>
             </div>
 
             <div class="final-call">
@@ -490,7 +490,7 @@
         `;
       } else if (type === "B") {
         invitationContent.innerHTML = `
-          <div class="gasa-card">
+          <div class="land-card">
             <div class="badge ${data.badgeClass}">${data.badge}</div>
 
             <img
@@ -514,27 +514,44 @@
               </p>
             </div>
 
+            <div class="info">
+              <div><strong>대상:</strong> 류영식, 김지민, 박지예</div>
+              <div><strong>시간:</strong> 사무실 출발 17:10, 도착 17:20</div>
+            </div>
+
+          </div>
+        `;
+      } else if (type === "C") {
+        invitationContent.innerHTML = `
+          <div class="atlas-card">
+            <div class="badge ${data.badgeClass}">${data.badge}</div>
+
+            <img
+              class="atlas-image"
+              src="${data.imageUrl}"
+              alt="파커랜드 이미지"
+            />
+            <br>
+              <br>"김파커가 돌아왔다!"</div>
+
             <div class="mission-box">
-              <h3>임무 2. 극한의 행성에서 진행되던 신광석 채집</h3>
               <p>
-                실종된 그가 맡았던 임무는 중단될 수 없습니다.<br>
-                지금부터는 당신이 이어받아야 합니다.
+                환상의 나라, 파커랜드에 여러분을 초대합니다.<br>
+                어느 날, 파커에게 도착한 한 통의 초대장과 신비로운 토큰.<br>
+                이건 우연일까, 운명일까?<br>
+                “혹시... 내가 알던 그 김파커?”<br>
+                맞습니다. 바로 그 김파커.<br>
+                지금, 당신도 그 초대장을 받게 될지도 모릅니다.<br>
+                상상 그 이상, 현실 너머의 세계.<br>
+                파커랜드, 입장하시겠습니까?<br>
               </p>
             </div>
 
             <div class="info">
-              <div><strong>소속:</strong> G.A.S.A. HELPER 부서</div>
-              <div><strong>작전명:</strong> 실종 요원 구출 및 신광석 채집</div>
-              <div><strong>준비물:</strong> 침착함, 관찰력, 팀워크</div>
-              <div><strong>대상:</strong> 류영재, 이인경, 최민규</div>
-              <div><strong>시간:</strong> 출발 17:10, 시작 17:25</div>
+              <div><strong>대상:</strong> 류영식, 김지민, 박지예</div>
+              <div><strong>시간:</strong> 사무실 출발 17:10, 도착 17:20</div>
             </div>
 
-            <div class="final-call">
-              우주는 더 이상 영화 속 이야기가 아닙니다.<br>
-              이제 당신이 그 주인공입니다.<br><br>
-              !!! G.A.S.A. 헬퍼 요원, 지금 모집 중 !!!
-            </div>
           </div>
         `;
       }
