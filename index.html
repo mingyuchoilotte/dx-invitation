@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>디혁팀 방탈출 초대장</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "맑은 고딕", Arial, sans-serif;
+      background:
+        radial-gradient(circle at center, rgba(90, 0, 0, 0.35), transparent 35%),
+        linear-gradient(135deg, #050507, #111827, #1f0f0f);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #f3e6d0;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          rgba(255, 255, 255, 0.03) 0px,
+          rgba(255, 255, 255, 0.03) 1px,
+          transparent 1px,
+          transparent 4px
+        );
+      pointer-events: none;
+      opacity: 0.25;
+    }
+
+    .card {
+      width: 420px;
+      max-width: calc(100% - 36px);
+      background: rgba(18, 18, 18, 0.94);
+      padding: 34px 28px;
+      border-radius: 18px;
+      text-align: center;
+      box-shadow:
+        0 0 30px rgba(180, 0, 0, 0.35),
+        0 18px 45px rgba(0, 0, 0, 0.75);
+      border: 1px solid rgba(180, 40, 40, 0.55);
+      position: relative;
+      margin: 24px 0;
+    }
+
+    .card::before {
+      content: "CONFIDENTIAL";
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: rgba(255, 80, 80, 0.65);
+    }
+
+    .envelope {
+      width: 150px;
+      height: 105px;
+      margin: 0 auto 24px;
+      position: relative;
+      background: #3a1f1f;
+      border: 2px solid #9b2c2c;
+      border-radius: 6px;
+      box-shadow:
+        inset 0 0 20px rgba(0, 0, 0, 0.65),
+        0 0 22px rgba(180, 0, 0, 0.45);
+    }
+
+    .envelope::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      border-left: 73px solid transparent;
+      border-right: 73px solid transparent;
+      border-top: 54px solid #5b2b2b;
+    }
+
+    .envelope::after {
+      content: "☠";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 36px;
+      font-size: 34px;
+      color: #f1d08a;
+      text-shadow: 0 0 12px rgba(255, 170, 60, 0.8);
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: 27px;
+      color: #f7d58b;
+      letter-spacing: -0.5px;
+      text-shadow: 0 0 10px rgba(255, 170, 60, 0.35);
+    }
+
+    p {
+      line-height: 1.7;
+      color: #cdbfae;
+      margin: 0;
+    }
+
+    .warning-text {
+      margin: 18px 0;
+      padding: 14px;
+      border: 1px dashed rgba(255, 90, 90, 0.55);
+      border-radius: 12px;
+      background: rgba(80, 0, 0, 0.25);
+      color: #ffb3a7;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      margin: 18px 0 12px;
+      font-size: 16px;
+      text-align: center;
+      border: 1px solid #6b2c2c;
+      border-radius: 10px;
+      box-sizing: border-box;
+      background: #111;
+      color: #f7d58b;
+      outline: none;
+    }
+
+    input::placeholder {
+      color: #7d6f63;
+    }
+
+    input:focus {
+      border-color: #d64b4b;
+      box-shadow: 0 0 12px rgba(214, 75, 75, 0.45);
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #8b0000, #3a0000);
+      color: #fff3dd;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      box-shadow: 0 0 16px rgba(180, 0, 0, 0.45);
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #b30000, #530000);
+      transform: translateY(-1px);
+    }
+
+    .error {
+      display: none;
+      color: #ff6b6b;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+
+    #invitationPage {
+      display: none;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 7px 14px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 16px;
+    }
+
+    .typeA {
+      background: #0b1020;
+      color: #8ee6ff;
+      border: 1px solid rgba(142, 230, 255, 0.6);
+      box-shadow: 0 0 14px rgba(80, 210, 255, 0.35);
+    }
+
+    .typeB {
+      background: #dff7e8;
+      color: #176b36;
+    }
+
+    .typeC {
+      background: #e8f0fe;
+      color: #174ea6;
+    }
+
+    .typeD {
+      background: #fce8e6;
+      color: #a50e0e;
+    }
+
+    .message {
+      margin: 18px 0;
+      white-space: pre-line;
+      line-height: 1.8;
+      font-size: 16px;
+      color: #e8d8c0;
+    }
+
+    .info {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 16px;
+      border-radius: 14px;
+      text-align: left;
+      margin: 20px 0;
+      line-height: 1.8;
+      font-size: 15px;
+      color: #e9dcc9;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .info strong {
+      color: #f7d58b;
+    }
+
+    .back {
+      background: #555;
+      box-shadow: none;
+    }
+
+.place-link {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  text-decoration: none;
+  text-align: center;
+  color: #fff3dd;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+    .back:hover {
+      background: #444;
+    }
+
+    .gasa-card {
+      text-align: left;
+    }
+
+    .gasa-image {
+      width: 100%;
+      border-radius: 14px;
+      margin: 8px 0 20px;
+      border: 1px solid rgba(142, 230, 255, 0.35);
+      box-shadow: 0 0 24px rgba(60, 180, 255, 0.25);
+      display: block;
+    }
+
+    .gasa-title {
+      text-align: center;
+      color: #8ee6ff;
+      font-size: 28px;
+      margin-bottom: 6px;
+      letter-spacing: 1px;
+      text-shadow: 0 0 14px rgba(80, 210, 255, 0.55);
+    }
+
+    .gasa-subtitle {
+      text-align: center;
+      color: #d8f7ff;
+      font-size: 15px;
+      margin-bottom: 18px;
+      line-height: 1.7;
+    }
+
+    .mission-box {
+      background: rgba(5, 18, 35, 0.85);
+      border: 1px solid rgba(142, 230, 255, 0.28);
+      border-radius: 14px;
+      padding: 15px;
+      margin: 14px 0;
+      box-shadow: inset 0 0 16px rgba(0, 0, 0, 0.35);
+    }
+
+    .mission-box h3 {
+      margin: 0 0 8px;
+      color: #8ee6ff;
+      font-size: 17px;
+    }
+
+    .mission-box p {
+      color: #d6e8ee;
+      font-size: 14.5px;
+      line-height: 1.7;
+    }
+
+    .condition-list {
+      margin: 10px 0 0;
+      padding-left: 20px;
+      color: #e9dcc9;
+      line-height: 1.8;
+      font-size: 14.5px;
+    }
+
+    .final-call {
+      margin-top: 18px;
+      padding: 15px;
+      text-align: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(0, 110, 150, 0.35), rgba(120, 0, 0, 0.3));
+      border: 1px solid rgba(142, 230, 255, 0.4);
+      color: #ffffff;
+      font-weight: bold;
+      line-height: 1.7;
+      box-shadow: 0 0 18px rgba(80, 210, 255, 0.25);
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        width: calc(100% - 36px);
+        padding: 30px 20px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .gasa-title {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- 첫 화면 -->
+<div class="card" id="startPage">
+  <div class="envelope"></div>
+
+  <h1>26년 상반기 디지털혁신 팀 빌딩</h1>
+
+  <input type="text" id="employeeId" placeholder="사번을 입력하시오">
+
+  <div class="error" id="errorMessage">
+    접근 실패. 등록되지 않은 사번입니다.
+  </div>
+</div>
+
+  <!-- 초대장 화면 -->
+  <div class="card" id="invitationPage">
+    <div id="invitationContent"></div>
+<br>
+<a
+  class="back place-link"
+  href="https://map.naver.com/p/directions/3zmTbO,2AJMH3,%EB%A1%AF%EB%8D%B0%EC%9B%94%EB%93%9C%ED%83%80%EC%9B%8C,35306752,PLACE_POI/3zn8jb,2AJP6O,%EB%A8%B8%EB%8D%94%ED%8C%8C%EC%BB%A4%20WOW%EC%9E%A0%EC%8B%A4%EC%A0%90,1086207417,PLACE_POI/-/walk?c=17.00,0,0,0,dh"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  장소 1 : 마더파커wow 잠실점 (링크 확인)
+</a>
+<br>
+
+<a
+  class="back place-link"
+  href="https://map.naver.com/p/directions/3zn8jb,2AJP6O,%EB%A8%B8%EB%8D%94%ED%8C%8C%EC%BB%A4%20WOW%EC%9E%A0%EC%8B%A4%EC%A0%90,1086207417,PLACE_POI/3zn9z2,2AJQ3l,%EB%B0%A9%EC%9D%B4%20%EA%B4%91%EC%95%88%EB%A6%AC,1896562967,PLACE_POI/-/walk?c=19.00,0,0,0,dh"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  장소 2 : 방이 광안리 (링크 확인)
+</a>
+
+  </div>
+
+
+  <script>
+    /*
+      초대장 배정:
+      A: 3명 - G.A.S.A. HELPER 요원 모집
+      B: 3명 - 
+      C: 3명
+      D: 1명
+    */
+
+    const employeeMap = {
+      "2180": "A",
+      "0066": "A",
+      "0141": "A",
+      "1024": "B",
+      "0127": "B",
+      "0004": "B",
+
+      "0478": "C",
+      "0146": "C",
+      "0214": "C",
+
+      "0095": "D"
+    };
+
+    const invitationData = {
+      A: {
+        badge: "G.A.S.A. CLASSIFIED",
+        badgeClass: "typeA",
+        title: "G.A.S.A. HELPER 요원 모집",
+        imageUrl: "http://murderparker.com/upload_file/room/%EA%B0%80%EC%82%AC%ED%99%88%ED%8E%98%EC%9D%B4%EC%A7%80.jpg"
+      },
+
+      B: {
+        badge: "파커랜드 초대장",
+        badgeClass: "typeB",
+        title: "파커랜드 초대장",
+        imageUrl: "http://murderparker.com/upload_file/room/%ED%8C%8C%EC%BB%A4%EB%9E%9C%EB%93%9C%ED%99%88%ED%8E%98%EC%9D%B4%EC%A7%80.jpg"
+      },
+
+      C: {
+        badge: "아틀라스",
+        badgeClass: "typeC",
+        title: "아틀라스",
+        imageUrl: "http://murderparker.com/upload_file/room/%EC%95%84%ED%8B%80%EB%9D%BC%EC%8A%A4%ED%99%88%ED%8E%98%EC%9D%B4%EC%A7%80.jpg"
+      },
+
+      D: {
+        badge: "특별 초대장",
+        badgeClass: "typeD",
+        title: "시크릿 키퍼",
+      }
+    };
+
+    function openInvitation() {
+      const employeeId = document.getElementById("employeeId").value.trim();
+      const type = employeeMap[employeeId];
+
+      if (!type) {
+        document.getElementById("errorMessage").style.display = "block";
+        return;
+      }
+
+      const data = invitationData[type];
+      const invitationContent = document.getElementById("invitationContent");
+
+      if (type === "A") {
+        invitationContent.innerHTML = `
+          <div class="gasa-card">
+            <div class="badge ${data.badgeClass}">${data.badge}</div>
+
+            <img
+              class="gasa-image"
+              src="${data.imageUrl}"
+              alt="G.A.S.A. HELPER 요원 모집 이미지"
+            />
+            <br>
+              이제, 우주의 미래는 G.A.S.A.가 책임집니다.<br>
+              그리고, 당신이 그 미래를 바꿀 헬퍼 요원이 될 차례입니다.
+            </div>
+
+            <div class="mission-box">
+              <h3>임무 1. 실종된 G.A.S.A. 요원 구출 작전</h3>
+              <p>
+                우주 어딘가에서 구조를 기다리고 있는 요원이 있습니다.<br>
+                당신의 첫 임무는 그를 무사히 지구로 귀환시키는 것입니다.
+              </p>
+            </div>
+
+            <div class="mission-box">
+              <h3>임무 2. 극한의 행성에서 진행되던 신광석 채집</h3>
+              <p>
+                실종된 그가 맡았던 임무는 중단될 수 없습니다.<br>
+                지금부터는 당신이 이어받아야 합니다.
+              </p>
+            </div>
+
+            <div class="info">
+              <div><strong>대상:</strong> 류영재, 이인경, 최민규</div>
+              <div><strong>시간:</strong> 출발 17:10, 시작 17:25</div>
+            </div>
+
+            <div class="final-call">
+              우주는 더 이상 영화 속 이야기가 아닙니다.<br>
+              이제 당신이 그 주인공입니다.<br><br>
+              !!! G.A.S.A. 헬퍼 요원, 지금 모집 중 !!!
+            </div>
+          </div>
+        `;
+      } else if (type === "B") {
+        invitationContent.innerHTML = `
+          <div class="land-card">
+            <div class="badge ${data.badgeClass}">${data.badge}</div>
+
+            <img
+              class="land-image"
+              src="${data.imageUrl}"
+              alt="파커랜드 이미지"
+            />
+            <br>
+              <br>"김파커가 돌아왔다!"</div>
+
+            <div class="mission-box">
+              <p>
+                환상의 나라, 파커랜드에 여러분을 초대합니다.<br>
+어느 날, 파커에게 도착한 한 통의 초대장과 신비로운 토큰.<br>
+이건 우연일까, 운명일까?<br>
+“혹시... 내가 알던 그 김파커?”<br>
+맞습니다. 바로 그 김파커.<br>
+지금, 당신도 그 초대장을 받게 될지도 모릅니다.<br>
+상상 그 이상, 현실 너머의 세계.<br>
+파커랜드, 입장하시겠습니까?<br>
+              </p>
+            </div>
+
+            <div class="mission-box">
+              <h3>임무 2. 극한의 행성에서 진행되던 신광석 채집</h3>
+              <p>
+                실종된 그가 맡았던 임무는 중단될 수 없습니다.<br>
+                지금부터는 당신이 이어받아야 합니다.
+              </p>
+            </div>
+
+            <div class="info">
+              <div><strong>소속:</strong> G.A.S.A. HELPER 부서</div>
+              <div><strong>작전명:</strong> 실종 요원 구출 및 신광석 채집</div>
+              <div><strong>준비물:</strong> 침착함, 관찰력, 팀워크</div>
+              <div><strong>대상:</strong> 류영재, 이인경, 최민규</div>
+              <div><strong>시간:</strong> 출발 17:10, 시작 17:25</div>
+            </div>
+
+            <div class="final-call">
+              우주는 더 이상 영화 속 이야기가 아닙니다.<br>
+              이제 당신이 그 주인공입니다.<br><br>
+              !!! G.A.S.A. 헬퍼 요원, 지금 모집 중 !!!
+            </div>
+          </div>
+        `;
+      }
+
+      document.getElementById("errorMessage").style.display = "none";
+      document.getElementById("startPage").style.display = "none";
+      document.getElementById("invitationPage").style.display = "block";
+    }
+
+    function goBack() {
+      document.getElementById("employeeId").value = "";
+      document.getElementById("errorMessage").style.display = "none";
+
+      document.getElementById("startPage").style.display = "block";
+      document.getElementById("invitationPage").style.display = "none";
+    }
+
+    document.getElementById("employeeId").addEventListener("keyup", function(event) {
+      if (event.key === "Enter") {
+        openInvitation();
+      }
+    });
+  </script>
+
+</body>
+
+<script>
+  alert("JavaScript 실행됨");
+</script>
+
+</html>
